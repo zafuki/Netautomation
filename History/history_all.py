@@ -15,6 +15,7 @@ def remove_num(string):
 def history(account) :
     # 이력 조회를 위한 명령어 실행
     ret = exec_cmd("sudo -H -u %s bash -i -c 'history -r;history'" % account)
+    print(ret)
     ret_split = ret.strip().split("\n")
     i = len (ret_split) - 1
 
@@ -40,10 +41,10 @@ def history(account) :
 if __name__ == "__main__":
     accounts = get_accounts()
     for account in accounts :
-        print "계정 :", account
+        print ("계정 :", account)
         history_list = history(account)
         if len(history_list) == 0:
-            print "\t기록된 이력 없음"
+            print ("\t기록된 이력 없음")
         for h in history_list :
-            print "\t%s\t%s" % h
-        print "-" * 70
+            print ("\t%s\t%s" % h)
+        print ("-" * 70)
